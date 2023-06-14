@@ -1,0 +1,54 @@
+table db1_users as u {
+  id integer [pk, increment]
+  username varchar(100) [not null]
+  birth varchar(100) [not null]
+  email varchar(100) [not null, unique]
+  password varchar(100) [not null]
+  profile_img_url varchar(1000)
+  role integer [not null,  note: '1: 참가자, 2: 주최자']
+  created_at datetime [not null, default: `now()`]
+}
+
+table db2_competition as comp {
+  id integer [pk, increment]
+  competition_name varchar(100) [not null, unique]
+  competition_date datetime [not null]
+  race_type integer [note: '1: 10km, 2: half, 3: full']
+  host_user_id integer [ref: > u.id]
+  created_at datetime [not null, default: `now()`]
+}
+
+table db2_point {
+  id integer [pk, increment]
+  user_id integer [ref: > u.id]
+  point integer [default: 0]
+}
+
+table db2_rank {
+  id integer [pk, increment]
+  user_id integer [ref: > u.id]
+  value integer [default: 0]
+}
+
+table db2_record {
+  id integer [pk, increment]
+  competition_id integer [ref: > comp.id]
+  user_id integer [ref: > u.id]
+  // is_offical bool
+  record_time datetime [not null]
+}
+
+table db2_unofficial_record {
+  id integer [pk, increment]
+  race_type integer [note: '1: 10km, 2: half, 3: full']
+  user_id integer [ref: > u.id]
+  // is_offical bool
+  record_time datetime [not null]
+}
+
+table db2_competition_user {
+  id integer [pk, increment]
+  competition_id integer [ref: > comp.id]
+  user_id integer [ref: > u.id]
+  created_at datetime [not null, default: `now()`]
+}

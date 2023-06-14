@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    image: sororiri/example-backend:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5500:5500
+    env_file: .env-example
+  db:
+    image: sororiri/example-mysql:0.0.1
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    ports:
+      - 4406:3306
+    volumes:
+      - dbVolume:/var/lib/mysql
+    env_file: .env-example
+
+volumes:
+  dbVolume:
+  dbmateVolume:

@@ -1,0 +1,25 @@
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json .
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+ENV TYPEORM_CONNECTION=mysql
+ENV TYPEORM_HOST=localhost
+ENV TYPEORM_USERNAME=root
+ENV TYPEORM_PASSWORD=root
+ENV TYPEORM_DATABASE=example
+ENV TYPEORM_PORT=3306
+ENV TYPEORM_LOGGING=TRUE
+ENV SECRET_KEY=example
+ENV PORT=5502
+
+EXPOSE 5502
+
+CMD ["npm", "run", "start-production"]

@@ -4,7 +4,8 @@
     "description": "",
     "scripts": {
       "start": "nodemon --delay 500ms --watch './src/**/*.ts' --exec \"ts-node\" src/server.ts",
-      "build": "tsc -p tsconfig.json"
+      "build": "tsc -p tsconfig.json",
+      "start-production": "node build/src/server.js"
     },
     "author": "sangyun",
     "license": "ISC",
