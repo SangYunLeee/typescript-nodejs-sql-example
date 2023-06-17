@@ -7,6 +7,6 @@ const router = express.Router();
 router.use('/companies', companyRouter);
 router.use('/examples', exampleRouter);
 
-router.use(express.static(__dirname + '/../../uploads'));
+
 router.use(middleware.errorHandler);
 export default router;
