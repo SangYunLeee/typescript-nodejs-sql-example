@@ -6,7 +6,7 @@ SQL - Typescript - Node.js 스택의 예제입니다.
 3. 서버 실행:
    - `npm run start`
 4. 서버 테스트 :
-   - `curl localhost:5500/examples`
+   - `curl localhost:5500/Competitions`
 5. SQL 접속을 위한 설정
    - .env-example 파일을 수정해서 DB 정보를 바꿔준다.
       - TYPEORM_HOST
